@@ -1,6 +1,6 @@
 {
   "name": "@lstmxx/yapi-mcp-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "一个用 LLM 将 Yapi 的 API 定义自动化生成为 TypeScript 代码的MCP服务",
   "type": "module",
   "private": false,
