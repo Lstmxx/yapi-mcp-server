@@ -75,7 +75,7 @@ npm install @lstmxx/yapi-mcp-server -g
 1.  **克隆代码仓库：**
 
     ```bash
-    git clone https://github.com/your-username/yapi-mcp-server.git
+    git clone git@github.com:Lstmxx/yapi-mcp-server.git
     ```
 
 2.  **进入项目目录：**
