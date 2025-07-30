@@ -1,0 +1,44 @@
+{
+  "name": "@lstmxx/yapi-mcp-server",
+  "version": "1.0.1",
+  "description": "一个用 LLM 将 Yapi 的 API 定义自动化生成为 TypeScript 代码的MCP服务",
+  "type": "module",
+  "private": false,
+  "author": "Lstmxx",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lstmxx/yapi-mcp-server.git"
+  },
+  "bin": {
+    "yapi-mcp-server": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "yapi",
+    "server",
+    "typescript"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outfile ./dist/index.js --target node",
+    "serve": "bun run ./src/index.ts",
+    "inspector": "npx @modelcontextprotocol/inspector ./dist/index.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^24.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.0",
+    "axios": "^1.11.0",
+    "cookie": "^1.0.2"
+  },
+  "license": "MIT"
+}
