@@ -21,10 +21,13 @@ const getAPIDetail = async (docUrl: string) => {
   return {
     method: docJSONData.method,
     path: docJSONData.path,
+    req_body_form: JSON.stringify(docJSONData.req_body_form),
     /** 请求参数JSON字符串 */
     req_body_other: docJSONData.req_body_other,
     /** 响应参数JSON字符串 */
     res_body: docJSONData.res_body,
+    req_body_type: docJSONData.req_body_type,
+    res_body_type: docJSONData.res_body_type
   };
 }
 
@@ -79,10 +82,10 @@ server.registerTool(
     *   解析 \`res_body\` (响应体) 的JSON结构，并创建一个名为 \`${typeName}Res\` 的TypeScript接口。
 
 2.  **添加字段注释:**
-    *   在生成的接口中，为每个字段添加JSDoc注释，注释内容使用JSON中的 \`description\` 字段值。
+    *   在生成的接口中，为每个字段添加JSDoc注释，注释内容使用JSON中的 \`description\` 或者 \`desc\` 字段值。
 
 3.  **生成TypeScript枚举:**
-    *   检查每个字段的 \`description\`。如果描述中包含明确的键值对（例如：“状态：0-禁用；1-启用”），请为其创建一个TypeScript枚举。
+    *   检查每个字段的 \`description\` 或者 \`desc\`。如果描述中包含明确的键值对（例如：“状态：0-禁用；1-启用”），请为其创建一个TypeScript枚举。
     *   枚举的命名规则为 \`\${首字母大写的字段名}Enum\` (例如: \`StatusEnum\`)。
 
 ---
@@ -92,11 +95,13 @@ server.registerTool(
 *   **接口路径:** \`${apiDetail.path}\`
 *   **请求方法:** \`${apiDetail.method}\`
 
+*   **请求体类型:** \`${apiDetail.req_body_type}\`
 **请求体 (req_body_other):**
 \`\`\`json
-${apiDetail.req_body_other || '{}'}
+${apiDetail.req_body_other || apiDetail.req_body_form || '{}'}
 \`\`\`
 
+*   **响应体类型:** \`${apiDetail.res_body_type}\`
 **响应体 (res_body):**
 \`\`\`json
 ${apiDetail.res_body || '{}'}
