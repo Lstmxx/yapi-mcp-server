@@ -21,9 +21,10 @@ const getAPIDetail = async (docUrl: string) => {
   return {
     method: docJSONData.method,
     path: docJSONData.path,
-    req_body_form: JSON.stringify(docJSONData.req_body_form),
+    req_body_form: docJSONData.req_body_form?.length === 0 ? '' : JSON.stringify(docJSONData.req_body_form),
     /** 请求参数JSON字符串 */
     req_body_other: docJSONData.req_body_other,
+    req_query: docJSONData.req_query?.length === 0 ?  '' : JSON.stringify(docJSONData.req_query),
     /** 响应参数JSON字符串 */
     res_body: docJSONData.res_body,
     req_body_type: docJSONData.req_body_type,
@@ -98,7 +99,7 @@ server.registerTool(
 *   **请求体类型:** \`${apiDetail.req_body_type}\`
 **请求体 (req_body_other):**
 \`\`\`json
-${apiDetail.req_body_other || apiDetail.req_body_form || '{}'}
+${apiDetail.req_body_other || apiDetail.req_body_form || apiDetail.req_query || '{}'}
 \`\`\`
 
 *   **响应体类型:** \`${apiDetail.res_body_type}\`
